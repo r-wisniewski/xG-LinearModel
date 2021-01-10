@@ -1,7 +1,7 @@
 """
 Usage: python ahl_scraper.py [start game ID] [last game ID] [output csv name]
 
-Scrape all shot and goal events (from start game to last game) and export as a csv for import by the linear model
+Scrape all shot and goal events (from start game to last game) and export as a csv for import by the linear model.
 """
 
 import requests

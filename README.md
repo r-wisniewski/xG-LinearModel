@@ -3,8 +3,8 @@ Working off of my initial python/SQL based AHL xG model, I decided implement it 
 
 # Usage
 
-1. The first step is scraping data from the AHL website.
-The ahl_scraper.py script gets all x,y shot & goal locations at a certain strength from the AHL website and exports that to a csv file. This script should be run once to generate training data and a second time to generate the testing data.
+### Scrape data
+Prior to running the linear model, we’ll need to scrape data. The ahl_scraper.py script gets all x,y shot & goal locations at a certain strength from the AHL website and exports that to a csv file. This script should be run once to generate training data and a second time to generate the testing data.
 ```
 command: Usage: python ahl_scraper.py [start game ID] [last game ID] [output csv name]
 ```
