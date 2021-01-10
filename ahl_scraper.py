@@ -19,6 +19,9 @@ filename = str(sys.argv[3]) + '.csv'
 url = 'https://lscluster.hockeytech.com/feed/index.php?feed=statviewfeed&view=gameCenterPlayByPlay&game_id='
 end ='&key=50c2cd9b5e18e390&client_code=ahl&lang=en&league_id=&callback=angular.callbacks._8'
 
+# Define a pandas dataframe to store the scraped data
+xg_df = pd.DataFrame(columns=['XLocation', 'YLocation', 'Strength', 'Goal'])
+
 for n in range(first_game_id,last_game+1,1):
     ######### Loop through the game summaries ###########
     
@@ -140,10 +143,7 @@ for n in range(first_game_id,last_game+1,1):
                             if int(strengths[i,1]) < 2:
                                 strengths[i,1] += 1
 
-        # Define a pandas dataframe to store the scraped data
-        xg_df = pd.DataFrame(columns=['XLocation', 'YLocation', 'Strength', 'Goal'])
-
-        # 2nd run through the events, we get the goal and combine that with strength. Add to SQL DB.
+        # 2nd run through the events, we get the goal and combine that with strength.
         for i in resp2:
             #get the event type and assume we have all metadata
             event = i.get("event")
@@ -189,11 +189,12 @@ for n in range(first_game_id,last_game+1,1):
                     event_strength = -int(event_strength)
 
                 #only append a row if the scraper got a 0 or 1 for whether or not this event was a goal. Omit nulls.
-                if isGoal != NULL:
+                if isGoal ==0 or isGoal == 1:
                     #add new row to the training pandas dataframe
-                    new_row = {'XLocation':xLocation, 'YLocation':yLocation, 'Strength':event_strength, 'Goal':isGoal}
-                    xg_df = xg_df.append()
-
+                    new_row = [xLocation, yLocation, event_strength, isGoal]
+                    r_series = pd.Series(new_row,index=xg_df.columns)
+                    xg_df = xg_df.append(r_series, ignore_index=True)
+                    
         #print game ID to see current progress
         print("Game ID: %i" % n)
     except:
