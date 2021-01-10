@@ -15,7 +15,7 @@ for example, the game ID for this URL: https://theahl.com/stats/game-center/1019
 
 # Future Work
 
-Scraping richer data (data with more features) would allow one to predict xG for a (x,y,strength) combination but also add in additional features to predict on.
+Scraping richer data (data with more features) would allow one to predict xG not only for a (x,y,strength) combination but also additional features to train, evaluate and predict on.
 
 # Contact
 

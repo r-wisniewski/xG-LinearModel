@@ -190,11 +190,11 @@ for n in range(first_game_id,last_game+1,1):
 
                 #only append a row if the scraper got a 0 or 1 for whether or not this event was a goal. Omit nulls.
                 if isGoal ==0 or isGoal == 1:
-                    #add new row to the training pandas dataframe
+                    #add new row to the pandas dataframe
                     new_row = [xLocation, yLocation, event_strength, isGoal]
                     r_series = pd.Series(new_row,index=xg_df.columns)
                     xg_df = xg_df.append(r_series, ignore_index=True)
-                    
+
         #print game ID to see current progress
         print("Game ID: %i" % n)
     except:
