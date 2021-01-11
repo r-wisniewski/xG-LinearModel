@@ -1,6 +1,6 @@
 import csv
 
-headings = ["X Location", "Y Location", "Strength"]
+headings = ["XLocation", "YLocation", "Strength"]
 
 #create the input csv
 with open("prediction.csv", mode="w") as results:
